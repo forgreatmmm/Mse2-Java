@@ -1,0 +1,176 @@
+@baseUrl = http://localhost:8080/api/students
+
+### Create Ananya Rao (201)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentId": 7101,
+  "studentName": "Ananya Rao",
+  "email": "ananya.rao@example.com",
+  "courseName": "Computer Science",
+  "programmingScore": 96,
+  "mathematicsScore": 90,
+  "technicalSkills": [
+    "Java",
+    "MySQL"
+  ]
+}
+
+### Create Kabir Mehta (201)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentId": 7102,
+  "studentName": "Kabir Mehta",
+  "email": "kabir.mehta@example.com",
+  "courseName": "Computer Science",
+  "programmingScore": 80,
+  "mathematicsScore": 76,
+  "technicalSkills": [
+    "Java",
+    "Git"
+  ]
+}
+
+### Create Meera Nair (201)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentId": 7103,
+  "studentName": "Meera Nair",
+  "email": "meera.nair@example.com",
+  "courseName": "Data Science",
+  "programmingScore": 44,
+  "mathematicsScore": 84,
+  "technicalSkills": [
+    "Python",
+    "MySQL"
+  ]
+}
+
+### Create Arjun Das (201)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentId": 7104,
+  "studentName": "Arjun Das",
+  "email": "arjun.das@example.com",
+  "courseName": "Information Technology",
+  "programmingScore": 42,
+  "mathematicsScore": 38,
+  "technicalSkills": [
+    "HTML",
+    "CSS"
+  ]
+}
+
+### Create Sara Khan (201)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentId": 7105,
+  "studentName": "Sara Khan",
+  "email": "sara.khan@example.com",
+  "courseName": "Data Science",
+  "programmingScore": 72,
+  "mathematicsScore": 72,
+  "technicalSkills": [
+    "Python",
+    "Git"
+  ]
+}
+
+### List all students (200)
+GET {{baseUrl}}
+
+### Find Meera by ID (200)
+GET {{baseUrl}}/7103
+
+### Merit list (200)
+GET {{baseUrl}}/merit-list
+
+### Search by email (200)
+GET {{baseUrl}}/search/email?email=meera.nair@example.com
+
+### Search by course (200)
+GET {{baseUrl}}/search/course?course=Computer%20Science
+
+### Shared skills (200)
+GET {{baseUrl}}/shared-skills
+
+### Programming below 50 and mathematics at least 75 (200)
+GET {{baseUrl}}/needs-improvement
+
+### Duplicate student ID (409)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentId": 7101,
+  "studentName": "Ananya Rao",
+  "email": "ananya.rao@example.com",
+  "courseName": "Computer Science",
+  "programmingScore": 96,
+  "mathematicsScore": 90,
+  "technicalSkills": [
+    "Java",
+    "MySQL"
+  ]
+}
+
+### Invalid programming score on create (400)
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "studentId": 7106,
+  "studentName": "Ananya Rao",
+  "email": "ananya.rao@example.com",
+  "courseName": "Computer Science",
+  "programmingScore": 101,
+  "mathematicsScore": 90,
+  "technicalSkills": [
+    "Java",
+    "MySQL"
+  ]
+}
+
+### Invalid mathematics score on update (400)
+PUT {{baseUrl}}/7102
+Content-Type: application/json
+
+{
+  "programmingScore": 87,
+  "mathematicsScore": -1,
+  "technicalSkills": [
+    "Java"
+  ]
+}
+
+### Update Kabir's scores and skills (200)
+PUT {{baseUrl}}/7102
+Content-Type: application/json
+
+{
+  "programmingScore": 87,
+  "mathematicsScore": 82,
+  "technicalSkills": [
+    "Java",
+    "Git",
+    "MySQL"
+  ]
+}
+
+### Check Kabir's updated profile (200)
+GET {{baseUrl}}/7102
+
+### Delete Arjun (204)
+DELETE {{baseUrl}}/7104
+
+### Check that Arjun was deleted (404)
+GET {{baseUrl}}/7104

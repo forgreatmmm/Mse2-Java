@@ -1,0 +1,231 @@
+Build a complete, working, beginner-friendly Java Spring Boot project named StudentProfileManagementSystem for my OOPJ coding assessment.
+
+The project must satisfy ALL the following examination requirements. Do not just provide code in the chat. Create all the required files directly in my workspace.
+
+### 1. Project configuration
+
+- Java and Spring Boot
+- Maven
+- Spring Web
+- Spring Data JPA
+- MySQL Connector
+- MySQL database
+- Maven Wrapper for Windows
+- Use port 8080.
+- Detect my installed Java version and configure a compatible Spring Boot version.
+- Do not require globally installed Maven.
+- Do not use manual JDBC, DriverManager, PreparedStatement or ResultSet.
+- Do not use Lombok.
+- Keep the code simple and beginner-friendly so that I can explain it during my viva.
+
+### 2. Q1 – Student class (5 marks)
+
+Create a Student entity class containing:
+
+- int studentId
+- String studentName
+- String email
+- String courseName
+- double programmingScore
+- double mathematicsScore
+- List<String> technicalSkills
+
+Implement:
+
+- Private attributes for encapsulation
+- Default constructor
+- Parameterized constructor
+- Getters and setters
+- toString()
+- Appropriate JPA annotations
+- @Id for studentId
+- @ElementCollection for technicalSkills
+
+Create methods to calculate and return the average score, performance category and stronger subject.
+
+### 3. Q2 – MySQL and business logic (5 marks)
+
+Create a MySQL database named student_profile_db with suitable tables for students and their technical skills.
+
+Use Spring Data JPA to store and retrieve actual records from MySQL. Do not use an in-memory database as a replacement.
+
+Implement all eight requirements:
+
+1. Calculate each student's average score using:
+
+   (programmingScore + mathematicsScore) / 2.0
+
+2. Assign performance categories:
+
+   - Average >= 85: Excellent
+   - Average >= 70 and < 85: Good
+   - Average >= 50 and < 70: Satisfactory
+   - Average < 50: Needs Improvement
+
+3. Identify the stronger subject:
+
+   - Programming if programmingScore is greater.
+   - Mathematics if mathematicsScore is greater.
+   - Both Equal if both scores are equal.
+
+4. Search for students by student ID, email or course name.
+
+5. Generate a merit list sorted by average score in descending order.
+
+6. Identify students sharing the same technical skills. Group students by shared technical skills using a HashMap and lists. Only display groups containing at least two students.
+
+7. Display students whose programming score is below 50 but whose mathematics score is at least 75.
+
+8. Prevent duplicate student IDs and validate both scores to ensure they are between 0 and 100, inclusive. Apply validation during both creation and updates.
+
+Use Java Collections explicitly wherever suitable:
+
+- ArrayList
+- List
+- HashMap
+- Collections
+- Comparator
+
+Prefer simple loops and if-else statements instead of complicated Stream API expressions.
+
+### 4. Q3 – REST APIs (10 marks)
+
+Create a StudentController with the base URL /api/students.
+
+Implement the following compulsory APIs:
+
+1. POST /api/students
+
+   Add a new student.
+
+2. GET /api/students
+
+   Retrieve all students.
+
+3. GET /api/students/{id}
+
+   Retrieve a student by ID.
+
+4. PUT /api/students/{id}
+
+   Update only the programming score, mathematics score and technical skills of an existing student. Preserve their personal information.
+
+5. DELETE /api/students/{id}
+
+   Delete a student record.
+
+6. GET /api/students/merit-list
+
+   Display the merit list sorted by average score in descending order.
+
+Also implement these additional APIs to demonstrate Q2 requirements:
+
+7. GET /api/students/search/email?email=value
+
+8. GET /api/students/search/course?course=value
+
+9. GET /api/students/shared-skills
+
+10. GET /api/students/needs-improvement
+
+Return suitable HTTP status codes and simple, meaningful error messages for duplicate IDs, invalid scores and missing students.
+
+### 5. Project structure
+
+Create a clean project structure containing:
+
+- StudentProfileManagementSystemApplication.java
+- model/Student.java
+- repository/StudentRepository.java
+- service/StudentService.java
+- controller/StudentController.java
+- Any minimal additional classes required for updates and error handling
+- application.properties
+- pom.xml
+- mvnw
+- mvnw.cmd
+- .mvn/wrapper configuration
+- database.sql
+- requests.http
+- README.md
+
+Use simple dependency injection and clear comments.
+
+### 6. MySQL configuration
+
+Configure application.properties for a locally running MySQL server:
+
+spring.datasource.url=jdbc:mysql://localhost:3306/student_profile_db
+
+spring.datasource.username=root
+
+spring.datasource.password=${MYSQL_PASSWORD}
+
+spring.jpa.hibernate.ddl-auto=update
+
+spring.jpa.show-sql=true
+
+server.port=8080
+
+Do not invent my MySQL password.
+
+Create a database.sql file containing the SQL command to create the database if it does not already exist.
+
+Tell me exactly what SQL command to execute in MySQL Workbench and how to set the MYSQL_PASSWORD environment variable in PowerShell.
+
+Never delete or modify unrelated existing databases.
+
+### 7. REST API testing
+
+Create a complete requests.http file compatible with the VS Code REST Client extension.
+
+Include:
+
+- At least five different sample students
+- Different performance categories
+- Students sharing technical skills
+- A student with programming score below 50 and mathematics score above 75
+- POST requests
+- GET requests
+- PUT request
+- DELETE request
+- Merit list request
+- Search by email and course requests
+- Shared skills request
+- Needs improvement request
+- Duplicate ID validation test
+- Invalid score validation test
+
+Use realistic sample data.
+
+### 8. Build and verification
+
+After creating all files:
+
+1. Check the entire project for compilation errors.
+2. Configure Maven Wrapper if it is missing.
+3. Run the Maven build using the Windows Maven Wrapper.
+4. Fix all compilation errors.
+5. Attempt to start the Spring Boot application when the database credentials are available.
+6. Test all APIs when the application is running.
+7. Do not claim that database integration or API tests passed unless they were actually executed successfully.
+8. Ensure that records are persisted in MySQL.
+
+### 9. Viva preparation and documentation
+
+Create a README.md explaining:
+
+- How to create the MySQL database.
+- How to configure the password.
+- How to run the project in PowerShell.
+- How to test the APIs.
+- How Q1, Q2 and Q3 are implemented.
+- Where encapsulation, dependency injection, JPA, REST APIs and Java Collections are used.
+
+Also create a short VIVA.md file explaining the important business logic and collection usage in simple language.
+
+Keep a record of the actual AI prompts used so that I can write genuine reflections after reviewing and testing the generated project.
+
+Do not create a frontend, authentication system, Spring Security or unnecessary advanced features.
+
+Complete the entire backend project directly in my workspace. Do not stop after generating a plan. Create the files, build the project, fix errors and report any remaining configuration steps.
